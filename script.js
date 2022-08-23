@@ -1,6 +1,6 @@
 let operandA = 0;
-let operandB = 0;
-let currentOperator = '';
+let operandB = null;
+let currentOperator = null;
 let displayText = "";
 
 const add = (a, b) => {
@@ -35,14 +35,30 @@ const operate = (operator, a, b) => {
      }
 }
 
+const resetVars = (result = '0') => {
+    operandA = result;
+    operandB = null;
+    currentOperator = null;
+}
+
 function bindButtons() {
     const digits = document.querySelectorAll('.digit');
-    const display = document.querySelector('.display');
+    // const display = document.querySelector('.display');
 
     digits.forEach(digit => {
         digit.addEventListener('click', () => {
-            displayText += digit.textContent;  
-            display.textContent = displayText;
+            const txt = digit.textContent;
+            if (!currentOperator) {
+                // update operandA
+                operandA = (operandA === 0) ? txt : (operandA + txt);
+                displayText = operandA;
+            }
+            else {
+                // update operandB
+                operandB = (operandB === null) ? txt : (operandB + txt);
+                displayText = operandB;
+            }
+            updateDisplay();
         });
     });
 
@@ -51,18 +67,33 @@ function bindButtons() {
     operators.forEach(operator => {
         operator.addEventListener('click', () => {
             currentOperator = operator.textContent;
-            displayText += ` ${currentOperator} `;
-            display.textContent = displayText;
+            displayText += `${currentOperator}`;
+            updateDisplay();
         })
     })
 
     const equalSign = document.querySelector('.equal');
 
     equalSign.addEventListener('click', () => {
-        const result = operate(currentOperator, operandA, operandB)
-        displayText.textContent = result;
-        console.log(currentOperator, operandA, operandB)
+        if (operandB === null || currentOperator === null) {
+            return;
+        }
+        const result = operate(currentOperator, +operandA, +operandB);
+        resetVars(result);
+        displayText = operandA;
+        updateDisplay();
     })
 }
 
+function updateDisplay(str = displayText) {
+    const display = document.querySelector('.display');
+    console.log(operandA, operandB, currentOperator);
+    if (str === "") {
+        str = operandA;
+    }
+
+    display.textContent = str;
+}
+
 bindButtons();
+updateDisplay();
