@@ -18,7 +18,7 @@ const multiply = (a, b) => {
 
 const divide = (a, b) => {
     if (b === 0) {
-        return ERROR_MSG;
+        return undefined;
     }
     return a / b;
 }
@@ -73,7 +73,10 @@ function bindButtons() {
         if (operandB === null || currentOperator === null) {
             return;
         }
-        const result = operate(currentOperator, +operandA, +operandB);
+        let result = operate(currentOperator, +operandA, +operandB);
+        if (result === undefined) {
+            result = ERROR_MSG;
+        }
         resetVars(result);
         updateDisplay();
     });
