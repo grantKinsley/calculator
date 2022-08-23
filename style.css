@@ -1,9 +1,9 @@
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 300px;
+    height: 300px;
     margin: auto;
     padding: 25px;
     border: 1px black solid;
@@ -15,32 +15,41 @@
     height: 50px;
     margin: 5px;
     text-align: right;
+    font-size: 48px;
 }
 
 .button-container {
     display: flex;
     width: 250px;
+    height: 250px;
 }
 
-.digit-container {
-    /* display: flex;
+.non-operator-container {
+    display: flex;
     flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 300px; */
+    align-items: stretch;
     flex: 3;
+}
+
+.digit-row,
+.clear-row {
+    display: flex;
+    flex: 1;
+}
+
+.digit,
+.clear {
+    flex: 1;
 }
 
 .operator-container {
     display: flex;
     flex-direction: column;
-    /* width: 450px;
-    height: 25px;
-    flex: 1; */
+    flex: 1;
     
 }
 
-.operator {
-    /* display: flex; */
-    /* flex: 1; */
+.operator,
+.equal {
+    flex: 1;
 }
