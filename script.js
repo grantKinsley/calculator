@@ -1,3 +1,5 @@
+const ERROR_MSG = "LOL";
+
 let operandA = 0;
 let operandB = null;
 let currentOperator = null;
@@ -16,7 +18,7 @@ const multiply = (a, b) => {
 
 const divide = (a, b) => {
     if (b === 0) {
-        return undefined;
+        return ERROR_MSG;
     }
     return a / b;
 }
@@ -42,11 +44,15 @@ function bindButtons() {
             const txt = digit.textContent;
             if (!currentOperator) {
                 // update operandA
-                operandA = (operandA === 0) ? txt : (operandA + txt);
+                operandA = (operandA === 0 || operandA === ERROR_MSG) 
+                            ? txt 
+                            : (operandA + txt);
             }
             else {
                 // update operandB
-                operandB = (operandB === null) ? txt : (operandB + txt);
+                operandB = (operandB === null) 
+                            ? txt 
+                            : (operandB + txt);
             }
             updateDisplay();
         });

@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 500px;
+    width: 300px;
     margin: auto;
     padding: 25px;
     border: 1px black solid;
@@ -11,7 +11,7 @@
 
 .display {
     border: 1px black solid;
-    width: 450px;
+    width: 250px;
     height: 50px;
     margin: 5px;
     text-align: right;
@@ -19,7 +19,7 @@
 
 .button-container {
     display: flex;
-    width: 450px;
+    width: 250px;
 }
 
 .digit-container {
